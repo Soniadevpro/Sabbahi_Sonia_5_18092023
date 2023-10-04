@@ -23,9 +23,9 @@
 
 // Mes variables
 let nbSlides = slides.length -1;
-let departDot = 0;
+let i = 0;
 
-const bannerImg = document.getElementById("banner-img")
+const bannerImg = document.querySelector(".banner-img")
 const banner = document.getElementById("banner")
 const txtBanner = document.querySelector("p")
 const arrowLeft = document.getElementById("arrowLeft") 
@@ -53,16 +53,20 @@ for (let a = 0; a < slides.length; a++) {
 	const dotCircle = document.createElement("span");
 	dotCircle.classList.add("dot");
 	dots.appendChild(dotCircle);
-	console.log("coucou");
+	//console.log("coucou");
 }
 
 
 
 
+//fonction pour lier tagLine et le HTML
+function showSlide () {
+	bannerImg.src = `./assets/images/slideshow/${slides[i].image}`;
+	txtBanner.innerHTML = slides[i].tagLine;
+	//console.log("hello");
+}
 
-
-
-
+showSlide ();
 
 // Event flèches
 arrowLeft.addEventListener("click", () => {
