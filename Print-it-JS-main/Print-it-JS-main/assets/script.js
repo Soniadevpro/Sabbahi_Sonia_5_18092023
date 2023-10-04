@@ -22,7 +22,7 @@
 
 
 // Mes variables
-let nbSlides = slides.length -1;
+let nbSlides = slides.length;
 let i = 0;
 
 const bannerImg = document.querySelector(".banner-img")
@@ -31,44 +31,61 @@ const txtBanner = document.querySelector("p")
 const arrowLeft = document.getElementById("arrowLeft") 
 const arrowRight = document.getElementById("arrowRight")
 const dots = document.querySelector(".dots")
-const fullDots = document.querySelector(".dot_selected")
+
+//-------------------------------------------------------
 
 
 
+//----Fonctions----------
+
+//Affichage des bullets points, 
+
+function showDots() {
+	const dots = document.querySelector('.dots');
+	for (let a = 0; a < nbSlides; a++) {
+	const dot = document.createElement('span');
+	dot.id='span' + a;
+    dot.addEventListener('click', function(event) {
+      i = Number(event.target.id.replace('span', ''));
+      showSlide();
+	});
+	dot.classList.add('dot');
+	dots.appendChild(dot);
+	if (a === 0) { 
+		dots.children[a].classList.add('dot_selected');
+	}
+	}
+ }
+showDots();
+//console.log("lol");
 
 
 
-//-------------------------------------------------------------------
-//BULLET POINTS
+// Lier les images et le texte de la bannière du tableau au HTML, appel de la fonction selected ici
 
-
-
-//Bullet points affichage
-
-dots.addEventListener("click", function (){
-	
-})
-
-for (let a = 0; a < slides.length; a++) {
-	const dotCircle = document.createElement("span");
-	dotCircle.classList.add("dot");
-	dots.appendChild(dotCircle);
-	//console.log("coucou");
-}
-
-
-
-
-//fonction pour lier tagLine et le HTML
 function showSlide () {
 	bannerImg.src = `./assets/images/slideshow/${slides[i].image}`;
 	txtBanner.innerHTML = slides[i].tagLine;
+	selected();
 	//console.log("hello");
 }
-
+//appel de la fonction 
 showSlide ();
 
-// Event flèches
+// Lier les images aux bullets 
+function selected() {
+	const dot = document.getElementsByClassName('dot');
+	for (let i = 0; i < dot.length; i++) {
+		dot[i].classList.remove('dot_selected');
+	}
+	dot[i].classList.add('dot_selected');
+ }
+
+//console.log("mdr");
+
+
+
+// Event Click flèches
 arrowLeft.addEventListener("click", () => {
 	
 	console.log("Flèche gauche")
@@ -78,3 +95,19 @@ arrowRight.addEventListener("click", () => {
 
 	console.log("Flèche droite")
 })
+
+// Fonction pour faire slide sur le click des flèches. (accessoirement les faire défiler automatiquement avec une intervalle de 2000ms avec setTimeout)
+let goTimeout;
+function arrowTimeout() {
+goTimeout = setTimeout(function() {
+	if (i === nbSlides - 1) {
+		i = 0;
+	} else {
+		i++
+	}
+	showSlide();
+	arrowTimeout();
+},2000);
+	
+}
+arrowTimeout();
