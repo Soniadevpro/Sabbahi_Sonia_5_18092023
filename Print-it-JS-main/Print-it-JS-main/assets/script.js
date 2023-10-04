@@ -38,15 +38,16 @@ const dots = document.querySelector(".dots")
 
 //----Fonctions----------
 
-//Affichage des bullets points, 
+//Affichage des bullets points avec la création des éléments <span></span> avec un id dot +a (dot0, dot1 ...) (avec une boucle for)
+// Création d'un eventListener par click sur dot nouvellement créée, 
 
 function showDots() {
 	const dots = document.querySelector('.dots');
 	for (let a = 0; a < nbSlides; a++) {
 	const dot = document.createElement('span');
-	dot.id='span' + a;
+	dot.id='dot' + a;
     dot.addEventListener('click', function(event) {
-      i = Number(event.target.id.replace('span', ''));
+      i = Number(event.target.id.replace('dot', ''));
       showSlide();
 	});
 	dot.classList.add('dot');
@@ -86,19 +87,38 @@ function selected() {
 
 
 // Event Click flèches
+
+
 arrowLeft.addEventListener("click", () => {
-	
+	clearTimeout(goTimeout);
+	if (i === 0) {
+		i = nbSlides - 1;
+	} else {
+		i--;
+	} showSlide ();
+	slideTimeout();
 	console.log("Flèche gauche")
 })
 
 arrowRight.addEventListener("click", () => {
-
+	clearTimeout(goTimeout);
+	if (i === nbSlides - 1) {
+		i = 0;
+	} else {
+		i++;
+	} showSlide ();
+	slideTimeout();
 	console.log("Flèche droite")
 })
 
-// Fonction pour faire slide sur le click des flèches. (accessoirement les faire défiler automatiquement avec une intervalle de 2000ms avec setTimeout)
+
+
+
+
+
+// Fonction pour faire défiler les slides automatiquement toutes les 2000ms 
 let goTimeout;
-function arrowTimeout() {
+function slideTimeout() {
 goTimeout = setTimeout(function() {
 	if (i === nbSlides - 1) {
 		i = 0;
@@ -106,8 +126,8 @@ goTimeout = setTimeout(function() {
 		i++
 	}
 	showSlide();
-	arrowTimeout();
+	slideTimeout();
 },2000);
 	
 }
-arrowTimeout();
+slideTimeout();
