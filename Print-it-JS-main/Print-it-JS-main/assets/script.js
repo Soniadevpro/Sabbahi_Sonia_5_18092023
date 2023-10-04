@@ -25,33 +25,35 @@
 let nbSlides = slides.length -1;
 let departDot = 0;
 
-const arrowLeft = document.getElementById("arrowLeft") //variables flèches
-const arrowRight = document.getElementById("arrowRight")
 const bannerImg = document.getElementById("banner-img")
+const banner = document.getElementById("banner")
+const txtBanner = document.querySelector("p")
+const arrowLeft = document.getElementById("arrowLeft") 
+const arrowRight = document.getElementById("arrowRight")
 const dots = document.querySelector(".dots")
+const fullDots = document.querySelector(".dot_selected")
 
 
-// affichage BULLET POINTS
-for (let pas = 0; pas <= nbSlides; pas++) {
-    dots.innerHTML +=
-      '<span id="dot' +
-      pas +
-      '" class="dot"  ' +
-      (pas + 1) +
-      '"></span>';
-  }
-
-  const dotList = document.querySelectorAll(".dot");
 
 
-const dotSelected = () => {
-	for (let i = 0; i <= nbSlides; i++) {
-		if (i === departDot) {
-			dotList[i].classList.remove("dot_selected");
-		}
-		else {
-			dotList[i].classList.add("dot_selected"); }
-		}
+
+
+//-------------------------------------------------------------------
+//BULLET POINTS
+
+
+
+//Bullet points affichage
+
+dots.addEventListener("click", function (){
+	
+})
+
+for (let a = 0; a < slides.length; a++) {
+	const dotCircle = document.createElement("span");
+	dotCircle.classList.add("dot");
+	dots.appendChild(dotCircle);
+	console.log("coucou");
 }
 
 
@@ -62,21 +64,13 @@ const dotSelected = () => {
 
 
 
-
-
 // Event flèches
-arrowLeft.addEventListener("click", function (){
+arrowLeft.addEventListener("click", () => {
 	
 	console.log("Flèche gauche")
 })
 
-arrowRight.addEventListener("click", function (){
-	
+arrowRight.addEventListener("click", () => {
+
 	console.log("Flèche droite")
 })
-
-// bullet points
-
-
-
-
