@@ -26,7 +26,6 @@ let nbSlides = slides.length;
 let i = 0;
 
 const bannerImg = document.querySelector(".banner-img")
-const banner = document.getElementById("banner")
 const txtBanner = document.querySelector("p")
 const arrowLeft = document.getElementById("arrowLeft") 
 const arrowRight = document.getElementById("arrowRight")
@@ -88,6 +87,8 @@ function selected() {
 
 // Event Click flèches
 
+// au click de la souris le clearTimeout annule le setTimeout pour faire défilé le slide au click
+
 
 arrowLeft.addEventListener("click", () => {
 	clearTimeout(goTimeout);
@@ -111,12 +112,7 @@ arrowRight.addEventListener("click", () => {
 	console.log("Flèche droite")
 })
 
-
-
-
-
-
-// Fonction pour faire défiler les slides automatiquement toutes les 2000ms 
+// Fonction pour faire défiler les slides automatiquement toutes les 2000ms s
 let goTimeout;
 function slideTimeout() {
 goTimeout = setTimeout(function() {
@@ -127,7 +123,9 @@ goTimeout = setTimeout(function() {
 	}
 	showSlide();
 	slideTimeout();
+	console.log("Défilement au bout de 2 secondes !");
 },2000);
 	
 }
+
 slideTimeout();
