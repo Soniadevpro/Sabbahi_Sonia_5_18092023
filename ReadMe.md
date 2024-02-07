@@ -1,6 +1,6 @@
 # Print-it ! - Projet 5 :printer:
 
-
+![Texte alternatif](/assets/images/printit.png "Book").
 
 ## **Notre mission :** 
 
